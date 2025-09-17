@@ -7,19 +7,19 @@ class PositionalEncoder(nn.Module):
     def __init__(self, in_channels, image_size, patch_size, hidden_dim):
         super().__init__()
         
-        # 49 for MNIST
+        # num_patches = 49 for MNIST
         num_patches = (image_size ** 2) // (patch_size ** 2)
 
         self.patch_embedder = PatchEmbedder(in_channels, patch_size, hidden_dim)
-        
+
+        self.cls_token = torch.nn.Parameter(
+            torch.normal(mean=0, std=0.02, size=(1, 1, hidden_dim))
+        )
+
         # shape: (1, 50, 8), all patches and cls token. 
         # We do it learnable, but can use sinusod fixed encodings
         self.positional_embeddings = torch.nn.Parameter(
             torch.normal(mean=0, std=0.02, size=(1, num_patches + 1, hidden_dim))
-        )
-
-        self.cls_token = torch.nn.Parameter(
-            torch.normal(mean=0, std=0.02, size=(1, 1, hidden_dim))
         )
 
     def forward(self, tensor):
