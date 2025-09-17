@@ -8,7 +8,6 @@ import torchvision.transforms as transforms
 def get_dataloaders():
     transform = transforms.Compose([
         transforms.ToTensor(),
-        transforms.Normalize((0.5,), (0.5,))
     ])
 
     data_path = Path(os.path.dirname(__file__)) / 'data'

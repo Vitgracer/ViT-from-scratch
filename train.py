@@ -22,13 +22,20 @@ def train_step(criterion, optimizer, model, dataloader, device):
 def val_step(criterion, model, dataloader, device):
     model.eval()
     val_loss = 0.0
+    correct = 0
+    total = 0
     with torch.no_grad():
         for images, labels in valloader:
             images, labels = images.to(device), labels.to(device)
             outputs = model(images)
             loss = criterion(outputs, labels)
             val_loss += loss.item()
-    return val_loss / len(dataloader)
+
+            # Get predicted class
+            _, predicted = torch.max(outputs, 1)
+            total += labels.size(0)
+            correct += (predicted == labels).sum().item()
+    return val_loss / len(dataloader), correct / total
 
 def save_model(model):
     device = torch.device("cpu")
@@ -45,11 +52,12 @@ def train(model, trainloader, valloader, device):
 
     for epoch in range(7):
         train_loss = train_step(criterion, optimizer, model, trainloader, device)
-        val_loss = val_step(criterion, model, valloader,device)
+        val_loss, val_acc = val_step(criterion, model, valloader,device)
 
         print(f"Epoch {epoch+1}, \
                 Train Loss: {train_loss:.4f}, \
-                Val Loss: {val_loss:.4f}")
+                Val Loss: {val_loss:.4f}, \
+                Val Accuracy: {val_acc:.4f}")
 
 if __name__ == "__main__":
     device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
