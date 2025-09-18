@@ -7,3 +7,18 @@
 
 # vit-from-scratch
 Simple minimal Visual Transformer implementation in PyTorch
+
+
+<!-- python -m venv vit-venv
+source vit-venv/Scripts/activate 
+
+pip3 install torch==2.5.1 torchvision==0.20.1 torchaudio==2.5.1 --index-url https://download.pytorch.org/whl/cu124
+pip3 install einops
+
+Say that we are soing simple digits prediction, because the main goal for us to show how ViT works.. 
+
+say that we have a simple cnn and its accuracy for test dataset is 98.95%.
+
+Say why transformers are better
+Or why to chosse CNNs
+Make a copmparison  -->
