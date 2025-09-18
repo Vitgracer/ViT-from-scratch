@@ -5,7 +5,7 @@ sys.path.append(Path(__file__).parent.parent.as_posix())
 
 from model.vit.embeddings.conv_embedder import PatchEmbedder
 from model.vit.embeddings.positional_encoder import PositionalEncoder
-from model.vit.encoder.attention import AttentionHead
+from model.vit.encoder.singlehead_attention import AttentionHead
 
 embedder = PatchEmbedder(in_channels = 1, 
                          patch_size = 4, 
