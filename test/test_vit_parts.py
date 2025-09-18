@@ -1,0 +1,19 @@
+import sys
+import torch
+from pathlib import Path
+sys.path.append(Path(__file__).parent.parent.as_posix())
+
+from model.vit.patch.conv_embedder import PatchEmbedder
+from model.vit.patch.positional_encoder import PositionalEncoder
+
+embedder = PatchEmbedder(in_channels = 1, 
+                         patch_size = 4, 
+                         hidden_dim = 8)
+
+positionlal_encoder = PositionalEncoder(image_size = 28, 
+                                        patch_size = 4, 
+                                        hidden_dim = 8)
+# image like MNIST
+input = torch.randn(1, 1, 28, 28)
+embeddings = embedder(input)
+positional_encodeing = positionlal_encoder(embeddings)

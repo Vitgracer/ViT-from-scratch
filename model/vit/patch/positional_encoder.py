@@ -23,7 +23,3 @@ class PositionalEncoder(nn.Module):
         cls_token = self.cls_token.expand(patch_embeddings.size(0), -1, -1)
         cls_patch_embeddings = torch.cat((cls_token, patch_embeddings), dim=1)
         return cls_patch_embeddings + self.positional_embeddings
-
-#encoder = PositionalEncoder(1, 28, 4, 8)
-#input = torch.randn(1, 1, 28, 28)
-#output = encoder(input)

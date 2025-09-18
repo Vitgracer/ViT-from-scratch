@@ -25,10 +25,3 @@ class PatchEmbedder(nn.Module):
         embedding = rearrange(conv_embedding, 'b c h w -> b (h w) c')
 
         return embedding
-    
-# embedder = PatchEmbedder(in_channels = 1, 
-#                          patch_size = 4, 
-#                          hidden_dim = 8)
-
-# input = torch.randn(1, 1, 28, 28)
-# output = embedder(input)
