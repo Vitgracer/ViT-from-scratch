@@ -1,16 +1,13 @@
 import torch
 import torch.nn as nn
-from model.vit.patch.conv_embedder import PatchEmbedder
 
 
 class PositionalEncoder(nn.Module):
-    def __init__(self, in_channels, image_size, patch_size, hidden_dim):
+    def __init__(self, image_size, patch_size, hidden_dim):
         super().__init__()
         
         # num_patches = 49 for MNIST
         num_patches = (image_size ** 2) // (patch_size ** 2)
-
-        self.patch_embedder = PatchEmbedder(in_channels, patch_size, hidden_dim)
 
         self.cls_token = torch.nn.Parameter(
             torch.normal(mean=0, std=0.02, size=(1, 1, hidden_dim))
@@ -22,9 +19,8 @@ class PositionalEncoder(nn.Module):
             torch.normal(mean=0, std=0.02, size=(1, num_patches + 1, hidden_dim))
         )
 
-    def forward(self, tensor):
-        cls_token = self.cls_token.expand(tensor.size(0), -1, -1)
-        patch_embeddings = self.patch_embedder(tensor)
+    def forward(self, patch_embeddings):
+        cls_token = self.cls_token.expand(patch_embeddings.size(0), -1, -1)
         cls_patch_embeddings = torch.cat((cls_token, patch_embeddings), dim=1)
         return cls_patch_embeddings + self.positional_embeddings
 
