@@ -3,8 +3,8 @@ import torch
 from pathlib import Path
 sys.path.append(Path(__file__).parent.parent.as_posix())
 
-from model.vit.patch.conv_embedder import PatchEmbedder
-from model.vit.patch.positional_encoder import PositionalEncoder
+from model.vit.embeddings.conv_embedder import PatchEmbedder
+from model.vit.embeddings.positional_encoder import PositionalEncoder
 
 embedder = PatchEmbedder(in_channels = 1, 
                          patch_size = 4, 

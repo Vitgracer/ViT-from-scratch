@@ -1,6 +1,6 @@
 import torch.nn as nn
-from model.vit.patch.conv_embedder import PatchEmbedder
-from model.vit.patch.positional_encoder import PositionalEncoder
+from model.vit.embeddings.conv_embedder import PatchEmbedder
+from model.vit.embeddings.positional_encoder import PositionalEncoder
 
 
 class SimpleViT(nn.Module):
