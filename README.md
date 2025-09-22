@@ -13,11 +13,13 @@ Simple minimal Visual Transformer implementation in PyTorch
 source vit-venv/Scripts/activate 
 
 pip3 install torch==2.5.1 torchvision==0.20.1 torchaudio==2.5.1 --index-url https://download.pytorch.org/whl/cu124
-pip3 install einops
+pip3 install einops, torchsummary
 
 Say that we are soing simple digits prediction, because the main goal for us to show how ViT works.. 
 
 say that we have a simple cnn and its accuracy for test dataset is 98.95%.
+
+Say taht boty model have ~2k params 
 
 Say why transformers are better
 Or why to chosse CNNs
