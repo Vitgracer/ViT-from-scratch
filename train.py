@@ -2,6 +2,7 @@ import torch
 import torch.nn as nn
 import torch.optim as optim
 from model.cnn.simple_cnn import SimpleCNN
+from model.vit.simple_vit import SimpleViT
 from dataset import get_dataloaders
 
 
@@ -63,7 +64,17 @@ if __name__ == "__main__":
     device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
     print(f"Using device: {device}")
 
-    model = SimpleCNN().to(device)
+    #model = SimpleCNN().to(device)
+    model = SimpleViT(
+        in_channels=1, 
+        image_size=28, 
+        patch_size=4, 
+        hidden_dim=8,
+        num_layers=2,
+        head_size=4,
+        num_heads=4,
+        mlp_hidden_size=8
+    ).to(device)
     trainloader, valloader = get_dataloaders()
 
     train(model, trainloader, valloader, device)
