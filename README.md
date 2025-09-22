@@ -5,7 +5,7 @@
 ![GitHub forks](https://img.shields.io/github/forks/Vitgracer/vit-from-scratch?style=social)
 ![Python](https://img.shields.io/badge/Python-3776AB.svg?logo=python&logoColor=white)
 
-# Simple minimal Visual Transformer implementation in PyTorch
+# Minimal Visual Transformer implementation in PyTorch
 Hey Friends! 
 
 Welcome to this tiny experiment where we compare a **classic Convolutional Neural Network (CNN)** against the modern **Vision Transformer (ViT)**.
@@ -37,7 +37,11 @@ We train two models with roughly **~2k** trainable parameters each.
 
 🔵 CNN! the test accuracy looks like this:
 
+![CNN](resources\cnn_training_result.png)
+
 🔴 ViT! And here’s the ViT’s performance:
+
+![VIT](resources\vit_training_result.png)
 
 ## 🤔 Observations
 - Attention layers involve matrix multiplications of full sequences (O(N²) complexity), so **ViT is SLOWER**. Not like a turtle.. but the turtle loaded with bags from supermarket 😂
@@ -59,19 +63,3 @@ We train two models with roughly **~2k** trainable parameters each.
 - ✅ Attention maps are interpretable (attention weights show where the model is “looking”)
 - ❌ Training is slower
 - ❌ Needs more data to reach CNN-level performance
-
-<!-- python -m venv vit-venv
-source vit-venv/Scripts/activate 
-
-pip3 install torch==2.5.1 torchvision==0.20.1 torchaudio==2.5.1 --index-url https://download.pytorch.org/whl/cu124
-pip3 install einops, torchsummary
-
-Say that we are soing simple digits prediction, because the main goal for us to show how ViT works.. 
-
-say that we have a simple cnn and its accuracy for test dataset is 98.95%.
-
-Say taht boty model have ~2k params 
-
-Say why transformers are better
-Or why to chosse CNNs
-Make a copmparison  -->
