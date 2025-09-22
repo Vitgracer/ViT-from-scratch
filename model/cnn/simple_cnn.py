@@ -16,5 +16,5 @@ class SimpleCNN(nn.Module):
         x = self.pool1(self.relu1(self.conv1(x)))
         x = self.pool2(self.relu2(self.conv2(x)))
         x = x.view(x.size(0), -1)  # Flatten
-        x = self.fc1(x)
+        x = nn.Softmax(dim=-1)(self.fc1(x))
         return x

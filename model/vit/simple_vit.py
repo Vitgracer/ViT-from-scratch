@@ -17,7 +17,7 @@ class SimpleViT(nn.Module):
         ) 
 
         self.classifier = torch.nn.Sequential(
-            torch.nn.Linear(hidden_dim, 9),
+            torch.nn.Linear(hidden_dim, 10),
             nn.Softmax(dim=-1)
         )
 
