@@ -1,6 +1,7 @@
 import torch
 import torch.nn as nn
 import torch.optim as optim
+from torchsummary import summary
 from model.cnn.simple_cnn import SimpleCNN
 from model.vit.simple_vit import SimpleViT
 from dataset import get_dataloaders
@@ -51,7 +52,7 @@ def train(model, trainloader, valloader, device):
     criterion = nn.CrossEntropyLoss()
     optimizer = optim.Adam(model.parameters(), lr=0.001)
 
-    for epoch in range(7):
+    for epoch in range(10):
         train_loss = train_step(criterion, optimizer, model, trainloader, device)
         val_loss, val_acc = val_step(criterion, model, valloader,device)
 
@@ -64,8 +65,8 @@ if __name__ == "__main__":
     device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
     print(f"Using device: {device}")
 
-    #model = SimpleCNN().to(device)
-    model = SimpleViT(
+    #model = SimpleCNN().to(device) # 2K params
+    model = SimpleViT( # 1.6K params
         in_channels=1, 
         image_size=28, 
         patch_size=4, 
@@ -75,6 +76,8 @@ if __name__ == "__main__":
         num_heads=4,
         mlp_hidden_size=8
     ).to(device)
+
+    summary(model, input_size = (1, 28, 28))
     trainloader, valloader = get_dataloaders()
 
     train(model, trainloader, valloader, device)
