@@ -16,5 +16,6 @@ class AttentionMultiHead(nn.Module):
     def forward(self, input):
         """ Result dimensionality is the same as input """
         head_outputs = [head(input) for head in self.heads]
-        result = torch.cat(head_outputs, dim = -1)
+        stacked_heads = torch.cat(head_outputs, dim = -1)
+        result = self.dim_restoration(stacked_heads)
         return result
