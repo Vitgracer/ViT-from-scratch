@@ -8,7 +8,7 @@
 # Minimal Visual Transformer implementation in PyTorch
 Hey Friends! 
 
-<img src="resources/attention.png" width="500" />
+<img src="resources/attention.png" width="700" />
 
 Welcome to this tiny experiment where we compare a **classic Convolutional Neural Network (CNN)** against the modern **Vision Transformer (ViT)**.
 The task: old and gold handwritten digits recognition.
