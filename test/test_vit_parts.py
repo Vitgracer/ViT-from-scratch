@@ -7,6 +7,7 @@ from model.vit.embeddings.conv_embedder import PatchEmbedder
 from model.vit.embeddings.positional_encoder import PositionalEncoder
 from model.vit.encoder.singlehead_attention import AttentionHead
 from model.vit.encoder.multihead_attention import AttentionMultiHead
+from model.vit.encoder.vit_block import BlockViT
 
 embedder = PatchEmbedder(in_channels = 1, 
                          patch_size = 4, 
@@ -18,6 +19,7 @@ positionlal_encoder = PositionalEncoder(image_size = 28,
 
 attention = AttentionHead(8, 4)
 attention_multi = AttentionMultiHead(8, 4, 4)
+vit_block = BlockViT(8, 4, 4, 8)
 
 # image like MNIST
 input = torch.randn(1, 1, 28, 28)
@@ -25,3 +27,4 @@ embeddings = embedder(input)
 positional_encoding = positionlal_encoder(embeddings)
 single_att = attention(positional_encoding)
 multi_att = attention_multi(positional_encoding)
+vit_block = vit_block(positional_encoding)
