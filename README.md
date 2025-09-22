@@ -37,11 +37,11 @@ We train two models with roughly **~2k** trainable parameters each.
 
 🔵 CNN! the test accuracy looks like this:
 
-![CNN](resources\cnn_training_result.png)
+![CNN](resources/cnn_training_result.png)
 
 🔴 ViT! And here’s the ViT’s performance:
 
-![VIT](resources\vit_training_result.png)
+![VIT](resources/vit_training_result.png)
 
 ## 🤔 Observations
 - Attention layers involve matrix multiplications of full sequences (O(N²) complexity), so **ViT is SLOWER**. Not like a turtle.. but the turtle loaded with bags from supermarket 😂
